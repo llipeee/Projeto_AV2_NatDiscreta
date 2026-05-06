@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+  <meta charset="UTF-8">
+  <title>Desafio das Sequências</title>
+</head>
+<body>
+
+<h1>Desafio das Sequências (PG)</h1>
+
+<p id="pergunta"></p>
+
+<button onclick="responder(0)">Opção A</button>
+<button onclick="responder(1)">Opção B</button>
+<button onclick="responder(2)">Opção C</button>
+
+<p id="resultado"></p>
+<p id="pontuacao"></p>
+
+<script>
+let perguntas = [
+  {
+    pergunta: "Qual é a razão da PG: 2, 6, 18, ...?",
+    opcoes: ["2", "3", "6"],
+    correta: 1
+  },
+  {
+    pergunta: "Qual o próximo termo da PG: 5, 10, 20, ...?",
+    opcoes: ["25", "30", "40"],
+    correta: 2
+  }
+];
+
+let atual = 0;
+let pontos = 0;
+
+function mostrarPergunta() {
+  let p = perguntas[atual];
+  document.getElementById("pergunta").innerText = p.pergunta;
+
+  let botoes = document.querySelectorAll("button");
+  botoes.forEach((btn, i) => {
+    btn.innerText = p.opcoes[i];
+  });
+}
+
+function responder(opcao) {
+  if (opcao === perguntas[atual].correta) {
+    document.getElementById("resultado").innerText = "Correto!";
+    pontos++;
+  } else {
+    document.getElementById("resultado").innerText = "Errado!";
+  }
+
+  atual++;
+
+  if (atual < perguntas.length) {
+    mostrarPergunta();
+  } else {
+    document.getElementById("pergunta").innerText = "Fim do jogo!";
+    document.getElementById("pontuacao").innerText = "Pontuação: " + pontos;
+  }
+}
+
+mostrarPergunta();
+</script>
+
+</body>
+</html>
