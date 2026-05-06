@@ -59,10 +59,17 @@ function mostrarPergunta() {
 
   document.getElementById("pergunta").innerText = p.pergunta;
 
+  document.getElementById("progresso").innerText =
+    "Pergunta " + (atual + 1) + " de " + perguntas.length;
+
+  document.getElementById("pontuacao").innerText =
+    "Pontuação: " + pontos;
+
   const botoes = document.querySelectorAll(".opcao");
   botoes.forEach((btn, i) => {
     btn.innerText = p.opcoes[i];
     btn.disabled = false;
+    btn.style.opacity = "1";
   });
 
   document.getElementById("resultado").innerText = "";
@@ -72,13 +79,16 @@ function responder(opcao) {
   const p = perguntas[atual];
 
   const botoes = document.querySelectorAll(".opcao");
-  botoes.forEach(btn => btn.disabled = true);
+  botoes.forEach(btn => {
+    btn.disabled = true;
+    btn.style.opacity = "0.6";
+  });
 
   if (opcao === p.correta) {
     document.getElementById("resultado").innerText = "✅ Correto!";
     pontos++;
   } else {
-    document.getElementById("resultado").innerText = 
+    document.getElementById("resultado").innerText =
       "❌ Errado! Resposta correta: " + p.opcoes[p.correta];
   }
 
@@ -94,9 +104,21 @@ function responder(opcao) {
 }
 
 function mostrarResultadoFinal() {
+  let mensagem = "";
+
+  if (pontos === perguntas.length) {
+    mensagem = "🏆 Perfeito! Você domina PG!";
+  } else if (pontos >= 7) {
+    mensagem = "👏 Muito bom! Quase lá!";
+  } else if (pontos >= 5) {
+    mensagem = "👍 Bom! Continue praticando!";
+  } else {
+    mensagem = "📚 Precisa revisar mais!";
+  }
+
   document.getElementById("pergunta").innerText = "🎉 Fim do jogo!";
   document.getElementById("resultado").innerText =
-    "Sua pontuação: " + pontos + " de " + perguntas.length;
+    mensagem + "\nPontuação: " + pontos + " de " + perguntas.length;
 
   document.querySelector(".botoes").style.display = "none";
 }
