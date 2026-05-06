@@ -2,68 +2,75 @@
 <html lang="pt-br">
 <head>
   <meta charset="UTF-8">
-  <title>Desafio das Sequências</title>
+  <title>Desafio das Sequências - PG</title>
+
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      text-align: center;
+      background-color: #f4f4f4;
+      padding: 20px;
+    }
+
+    h1 {
+      color: #333;
+    }
+
+    .container {
+      background: white;
+      padding: 20px;
+      border-radius: 10px;
+      max-width: 500px;
+      margin: auto;
+      box-shadow: 0 0 10px rgba(0,0,0,0.1);
+    }
+
+    button {
+      display: block;
+      margin: 10px auto;
+      padding: 10px;
+      width: 80%;
+      font-size: 16px;
+      cursor: pointer;
+    }
+
+    #resultado {
+      font-weight: bold;
+      margin-top: 15px;
+    }
+
+    .instrucoes {
+      font-size: 14px;
+      margin-bottom: 15px;
+      color: #555;
+    }
+  </style>
 </head>
+
 <body>
 
-<h1>Desafio das Sequências (PG)</h1>
+  <div class="container">
+    <h1>🎮 Desafio das Sequências</h1>
 
-<p id="pergunta"></p>
+    <p class="instrucoes">
+      Resolva os desafios de Progressão Geométrica (PG). 
+      Escolha a alternativa correta e teste seus conhecimentos!
+    </p>
 
-<button onclick="responder(0)">Opção A</button>
-<button onclick="responder(1)">Opção B</button>
-<button onclick="responder(2)">Opção C</button>
+    <p id="pergunta"></p>
 
-<p id="resultado"></p>
-<p id="pontuacao"></p>
+    <div class="botoes">
+      <button class="opcao" onclick="responder(0)"></button>
+      <button class="opcao" onclick="responder(1)"></button>
+      <button class="opcao" onclick="responder(2)"></button>
+    </div>
 
-<script>
-let perguntas = [
-  {
-    pergunta: "Qual é a razão da PG: 2, 6, 18, ...?",
-    opcoes: ["2", "3", "6"],
-    correta: 1
-  },
-  {
-    pergunta: "Qual o próximo termo da PG: 5, 10, 20, ...?",
-    opcoes: ["25", "30", "40"],
-    correta: 2
-  }
-];
+    <p id="resultado"></p>
 
-let atual = 0;
-let pontos = 0;
+    <button onclick="reiniciarJogo()">🔄 Jogar novamente</button>
+  </div>
 
-function mostrarPergunta() {
-  let p = perguntas[atual];
-  document.getElementById("pergunta").innerText = p.pergunta;
-
-  let botoes = document.querySelectorAll("button");
-  botoes.forEach((btn, i) => {
-    btn.innerText = p.opcoes[i];
-  });
-}
-
-function responder(opcao) {
-  if (opcao === perguntas[atual].correta) {
-    document.getElementById("resultado").innerText = "Correto!";
-    pontos++;
-  } else {
-    document.getElementById("resultado").innerText = "Errado!";
-  }
-
-  atual++;
-
-  if (atual < perguntas.length) {
-    mostrarPergunta();
-  } else {
-    document.getElementById("pergunta").innerText = "Fim do jogo!";
-    document.getElementById("pontuacao").innerText = "Pontuação: " + pontos;
-  }
-}
-
-mostrarPergunta();
-</script>
+  <script src="script.js"></script>
 
 </body>
 </html>
