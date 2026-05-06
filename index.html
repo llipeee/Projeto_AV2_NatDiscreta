@@ -32,6 +32,14 @@
       width: 80%;
       font-size: 16px;
       cursor: pointer;
+      border: none;
+      border-radius: 5px;
+      background-color: #3498db;
+      color: white;
+    }
+
+    button:hover {
+      background-color: #2980b9;
     }
 
     #resultado {
@@ -44,6 +52,12 @@
       margin-bottom: 15px;
       color: #555;
     }
+
+    #progresso, #pontuacao {
+      margin-top: 10px;
+      font-size: 14px;
+      color: #666;
+    }
   </style>
 </head>
 
@@ -53,9 +67,12 @@
     <h1>🎮 Desafio das Sequências</h1>
 
     <p class="instrucoes">
-      Resolva os desafios de Progressão Geométrica (PG). 
-      Escolha a alternativa correta e teste seus conhecimentos!
+      Você é um explorador tentando decifrar padrões secretos.
+      Resolva os desafios de Progressão Geométrica para completar sua missão!
     </p>
+
+    <p id="progresso"></p>
+    <p id="pontuacao"></p>
 
     <p id="pergunta"></p>
 
