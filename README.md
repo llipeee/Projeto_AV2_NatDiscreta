@@ -76,6 +76,6 @@ Abra o arquivo `index.html` diretamente no navegador. Não é necessário instal
 - `style.css`: visual, responsividade e estados de feedback.
 - `script.js`: perguntas, fluxo do quiz, pontuação, tentativas, dicas, classificações, sons e interações.
 
-## Autores/equipe
+## Autor
 
-Informação não indicada no repositório atual.
+Felipe Antonio de Almeida Pinto
