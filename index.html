@@ -1,93 +1,227 @@
 <!DOCTYPE html>
-<html lang="pt-br">
+<html lang="pt-BR">
 <head>
   <meta charset="UTF-8">
-  <title>Desafio das Sequências - PG</title>
-
-  <style>
-    body {
-      font-family: Arial, sans-serif;
-      text-align: center;
-      background-color: #f4f4f4;
-      padding: 20px;
-    }
-
-    h1 {
-      color: #333;
-    }
-
-    .container {
-      background: white;
-      padding: 20px;
-      border-radius: 10px;
-      max-width: 500px;
-      margin: auto;
-      box-shadow: 0 0 10px rgba(0,0,0,0.1);
-    }
-
-    button {
-      display: block;
-      margin: 10px auto;
-      padding: 10px;
-      width: 80%;
-      font-size: 16px;
-      cursor: pointer;
-      border: none;
-      border-radius: 5px;
-      background-color: #3498db;
-      color: white;
-    }
-
-    button:hover {
-      background-color: #2980b9;
-    }
-
-    #resultado {
-      font-weight: bold;
-      margin-top: 15px;
-    }
-
-    .instrucoes {
-      font-size: 14px;
-      margin-bottom: 15px;
-      color: #555;
-    }
-
-    #progresso, #pontuacao {
-      margin-top: 10px;
-      font-size: 14px;
-      color: #666;
-    }
-  </style>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Código Q: Desafio da Progressão Geométrica</title>
+  <meta
+    name="description"
+    content="Jogo educativo sobre Progressão Geométrica, razão q e padrões multiplicativos."
+  >
+  <link rel="stylesheet" href="style.css">
 </head>
-
 <body>
+  <main class="app" aria-live="polite">
+    <section class="screen screen-start is-active" id="start-screen">
+      <div class="brand">
+        <span class="brand-mark" aria-hidden="true">PG</span>
+        <span>Resolu&ccedil;&atilde;o de Problemas de Natureza Discreta</span>
+      </div>
 
-  <div class="container">
-    <h1>🎮 Desafio das Sequências</h1>
+      <div class="hero-layout">
+        <div class="hero-copy">
+          <p class="eyebrow">Jogo educativo</p>
+          <h1>C&oacute;digo Q: Desafio da Progress&atilde;o Geom&eacute;trica</h1>
+          <p class="hero-subtitle">
+            Decifre padr&otilde;es multiplicativos, encontre a raz&atilde;o q e avance pelas fases da PG.
+          </p>
+          <p>
+            Um antigo sistema chamado C&oacute;digo Q foi bloqueado por sequ&ecirc;ncias
+            geom&eacute;tricas. Para liberar cada etapa, voc&ecirc; precisa reconhecer
+            a raz&atilde;o, calcular termos e usar as f&oacute;rmulas da Progress&atilde;o
+            Geom&eacute;trica.
+          </p>
 
-    <p class="instrucoes">
-      Você é um explorador tentando decifrar padrões secretos.
-      Resolva os desafios de Progressão Geométrica para completar sua missão!
-    </p>
+          <div class="hero-actions">
+            <button class="primary-button" id="start-game">Decifrar C&oacute;digo Q</button>
+            <button class="secondary-button" data-screen="instructions-screen">Como jogar</button>
+          </div>
 
-    <p id="progresso"></p>
-    <p id="pontuacao"></p>
+          <div class="mission-dashboard" aria-label="Resumo da missão">
+            <div>
+              <span>16</span>
+              <strong>Desafios</strong>
+            </div>
+            <div>
+              <span>4</span>
+              <strong>Fases da PG</strong>
+            </div>
+            <div>
+              <span>3</span>
+              <strong>Tentativas</strong>
+            </div>
+          </div>
+        </div>
 
-    <p id="pergunta"></p>
+        <div class="sequence-board" aria-label="Painel visual com sequências geométricas">
+          <p class="board-label">Painel do C&oacute;digo Q</p>
+          <div class="sequence-row">
+            <span>2</span>
+            <span>6</span>
+            <span>18</span>
+            <span>54</span>
+          </div>
+          <div class="sequence-row">
+            <span>81</span>
+            <span>27</span>
+            <span>9</span>
+            <span>3</span>
+          </div>
+          <div class="formula-chip">
+            a<sub>n</sub> = a<sub>1</sub> &middot; q<sup>n-1</sup>
+          </div>
+          <div class="decoder-strip" aria-label="Status do decodificador">
+            <span>C&oacute;digo ativo</span>
+            <span>q em an&aacute;lise</span>
+            <span>PG validada</span>
+          </div>
+          <div class="mission-map" aria-label="Fases do Código Q">
+            <span>Raz&atilde;o q</span>
+            <span>Termos</span>
+            <span>F&oacute;rmula</span>
+            <span>Soma</span>
+          </div>
+        </div>
+      </div>
+    </section>
 
-    <div class="botoes">
-      <button class="opcao" onclick="responder(0)"></button>
-      <button class="opcao" onclick="responder(1)"></button>
-      <button class="opcao" onclick="responder(2)"></button>
-    </div>
+    <section class="screen" id="instructions-screen" hidden>
+      <div class="screen-header">
+        <p class="eyebrow">Como jogar</p>
+        <h2>Objetivo, regras e tentativas</h2>
+      </div>
 
-    <p id="resultado"></p>
+      <div class="instructions-grid">
+        <article>
+          <h3>Objetivo</h3>
+          <p>
+            Decifre partes do C&oacute;digo Q resolvendo desafios de Progress&atilde;o
+            Geom&eacute;trica: identifique a raz&atilde;o, encontre termos e use f&oacute;rmulas
+            quando necess&aacute;rio.
+          </p>
+        </article>
+        <article>
+          <h3>Regras</h3>
+          <p>
+            Cada uma das 4 fases tem 4 desafios com alternativas. Depois de responder, o jogo mostra
+            a resposta correta e uma explica&ccedil;&atilde;o matem&aacute;tica curta.
+          </p>
+        </article>
+        <article>
+          <h3>Tentativas</h3>
+          <p>
+            Voc&ecirc; come&ccedil;a com 3 tentativas. Cada erro reduz sua precis&atilde;o,
+            mas o jogo continua para que voc&ecirc; conclua a an&aacute;lise e revise o padr&atilde;o.
+          </p>
+        </article>
+        <article>
+          <h3>Dica</h3>
+          <p>
+            Use o bot&atilde;o de dica durante uma pergunta. A dica lembra a estrat&eacute;gia,
+            mas n&atilde;o entrega a resposta antes da sua escolha.
+          </p>
+        </article>
+      </div>
 
-    <button onclick="reiniciarJogo()">🔄 Jogar novamente</button>
-  </div>
+      <div class="screen-actions">
+        <button class="primary-button" id="start-from-instructions">Iniciar quiz</button>
+        <button class="secondary-button" data-screen="start-screen">Voltar</button>
+      </div>
+    </section>
 
-  <script src="script.js"></script>
+    <section class="screen" id="quiz-screen" hidden>
+      <header class="quiz-topbar">
+        <div>
+          <p class="eyebrow" id="mission-label">Fase 1</p>
+          <h2>Decifre o padr&atilde;o</h2>
+        </div>
+        <button class="sound-toggle" id="sound-toggle" type="button" aria-pressed="true">
+          Som ligado
+        </button>
+      </header>
 
+      <div class="status-panel" aria-label="Progresso do jogo">
+        <div>
+          <span>C&oacute;digo decifrado</span>
+          <strong id="score-text">0/16</strong>
+        </div>
+        <div>
+          <span>Precis&atilde;o</span>
+          <strong class="attempts-meter" id="attempts-text">3/3</strong>
+        </div>
+        <div>
+          <span>Desafio atual</span>
+          <strong id="progress-text">1 de 16</strong>
+        </div>
+      </div>
+
+      <div class="progress-track" aria-hidden="true">
+        <span id="progress-bar"></span>
+      </div>
+
+      <p class="transition-banner" id="transition-banner" hidden></p>
+
+      <article class="question-panel">
+        <p class="stage-name" id="stage-name">Chave da Raz&atilde;o</p>
+        <p class="story-text" id="story-text">
+          A primeira trava do C&oacute;digo Q exige reconhecer o valor da raz&atilde;o.
+        </p>
+        <p class="formula-note" id="formula-note">
+          F&oacute;rmula do C&oacute;digo Q: a<sub>n</sub> = a<sub>1</sub> &middot; q<sup>n-1</sup>
+        </p>
+        <button class="hint-button" id="hint-button" type="button">Revelar dica</button>
+        <p class="hint-text" id="hint-text" hidden></p>
+        <h3 id="question-text"></h3>
+        <div class="options-grid" id="options"></div>
+      </article>
+
+      <aside class="feedback-panel" id="feedback-panel" aria-live="polite" aria-atomic="true" hidden>
+        <h3 id="feedback-title"></h3>
+        <p id="feedback-text"></p>
+      </aside>
+
+      <div class="screen-actions">
+        <button class="primary-button" id="next-question" disabled hidden>Pr&oacute;xima fase</button>
+        <button class="secondary-button" data-screen="instructions-screen">Instru&ccedil;&otilde;es</button>
+      </div>
+    </section>
+
+    <section class="screen" id="result-screen" hidden>
+      <div class="screen-header">
+        <p class="eyebrow">Relat&oacute;rio final</p>
+        <h2 id="result-title">C&oacute;digo analisado</h2>
+      </div>
+
+      <div class="result-score" aria-label="Pontuação final">
+        <span id="final-score">0/16</span>
+        <strong id="final-percent">0%</strong>
+      </div>
+
+      <div class="result-badges" aria-label="Conquistas finais">
+        <div>
+          <span>Selo do C&oacute;digo Q</span>
+          <strong id="final-medal">C&oacute;digo inicial</strong>
+        </div>
+        <div>
+          <span>Precis&atilde;o final</span>
+          <strong id="final-attempts">3/3</strong>
+        </div>
+      </div>
+
+      <p class="result-message" id="result-message"></p>
+
+      <section class="mistakes-summary" id="mistakes-summary" aria-live="polite" hidden>
+        <h3>Desafios para revisar</h3>
+        <div id="mistakes-list"></div>
+      </section>
+
+      <div class="screen-actions">
+        <button class="primary-button" id="play-again">Jogar novamente</button>
+        <button class="secondary-button" data-screen="instructions-screen">Rever regras</button>
+      </div>
+    </section>
+  </main>
+
+  <script src="script.js" defer></script>
 </body>
 </html>
